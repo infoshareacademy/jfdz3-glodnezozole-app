@@ -1,24 +1,32 @@
-.App {
-  text-align: center;
+html, body {
+  margin: 0;
+  padding: 0 !important;
+  border: 0;
+  height: 100%;
+  background: none;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+@media screen and (max-width: 768px) {
+  h1, h2 {
+    margin: 0;
+    padding: 0;
+  }
+  h3, h4 {
+    margin: 0;
+    padding: 0;
+  }
+  h5, h6 {
+    margin: 0;
+    padding: 0;
+  }
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: normal;
 }
-
-.App-intro {
-  font-size: large;
+nav ul a {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+p, span, a, li {
+  font-family: 'Roboto', sans-serif;
 }
