@@ -1,0 +1,38 @@
+/*-------------Function List --------- */
+article.functionlist {
+    padding-top: 3%;
+    padding-bottom: 5vh;
+    padding-left: 10%;
+    padding-right: 10%;
+    line-height: 1.1;
+    font-size: 135%;
+    background: none;
+
+}
+
+section.functionlist h1:first-letter {
+    color: #42BA85;
+    font-size: 200%;
+    background: none;
+
+}
+
+section.functionlist p {
+    padding-left: 40%;
+    background: none;
+
+}
+
+h1.functionlist {
+    text-align: center;
+    background: none;
+}
+
+@media screen and (max-width: 768px) {
+    section.functionlist p {
+        padding: 0;
+    }
+    article.functionlist {
+        padding: 0;
+    }
+}
