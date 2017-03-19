@@ -23,14 +23,15 @@ class Converter extends React.Component {
                 jsonData = JSON.parse(data);
             } catch (error) {
                 jsonData = [];
+                console.warn('error')
             }
             this.setState({data: jsonData});
-            console.log(data);
         };
         dataLoader.send(null);
     }
 
     render() {
+        const { data } = this.state;
         return (
             <div className="container-fluid gray">
                 <div className="col-md-1"/>
@@ -40,9 +41,7 @@ class Converter extends React.Component {
                         <div className="form-group">
                             <div className="col-md-10">
                                 <select name="currencies" className="styled-select">
-                                    <option value="EUR">EUR</option>
-                                    <option value="PLN">PLN</option>
-                                    <option value="USD">USD</option>
+                                    {data[0] ? data[0].rates.map( (e) => <option>{e.code}</option> ) : '' }
                                 </select>
                             </div>
                         </div>
@@ -61,9 +60,7 @@ class Converter extends React.Component {
                             <div className="form-group">
                                 <div className="col-md-12">
                                     <select name="currencies" className="styled-select">
-                                        <option value="EUR">EUR</option>
-                                        <option value="PLN">PLN</option>
-                                        <option value="USD">USD</option>
+                                        {data[0] ? data[0].rates.map( (e) => <option>{e.code}</option> ) : '' }
                                     </select>
                                 </div>
                             </div>
