@@ -13,6 +13,7 @@ class LogScreen extends React.Component{
                     <input type="text" placeholder="Login"></input>
                     <input type="password" placeholder="Hasło"></input>
                     <input type="submit" value="Zaloguj się"></input>
+                    <input type="submit" value="Zaloguj się przez Facebook"></input>
                 </form>
            </div>
             )}
