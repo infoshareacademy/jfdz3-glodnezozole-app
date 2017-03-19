@@ -14,7 +14,6 @@
         font-size: 150%; } }
 @media screen and (min-width: 769px) {
     article.teaser {
-        margin-top: 110%;
         padding-top: 15%; }
 
     section.teaser {
