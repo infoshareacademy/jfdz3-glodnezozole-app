@@ -76,9 +76,9 @@ statusChangeCallback(response) {
   }
 }
 
-// This function is called when someone finishes with the Login
-// Button.  See the onlogin handler attached to it in the sample
-// code below.
+// // This function is called when someone finishes with the Login
+// // Button.  See the onlogin handler attached to it in the sample
+// // code below.
 checkLoginState() {
   FB.getLoginStatus(function(response) {
     this.statusChangeCallback(response);
@@ -96,7 +96,7 @@ handleClick() {
                 <form>
                     <div className="icon"><img src={unlocked} alt="lock"></img></div>
                     <h1>Wpisz swoje dane urzytkownika</h1>
-                    <input type="text" placeholder="Login"></input>
+                    <input type="text" placeholder="Email"></input>
                     <input type="password" placeholder="Hasło"></input>
                     <input type="submit" value="Zaloguj się"></input>
                     <input type="submit" value="Zaloguj się przez Facebook" onClick={this.handleClick}></input>

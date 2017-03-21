@@ -1,0 +1,21 @@
+
+.gray {
+    background-color: lightgray;
+}
+
+.styled-select {
+    overflow: hidden;
+    width: 100%;
+    background-color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    height: 40px;
+    padding: 6px 12px;
+    font-size: 20px;
+}
+
+.form-control {
+    height: 40px;
+    font-size: 20px;
+}
