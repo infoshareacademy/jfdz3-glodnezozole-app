@@ -5,8 +5,10 @@ class GetExchangeRate extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			currencies: []
+			currencies: [],
+			value: 0,
 		}
+		this.handleChange = this.handleChange.bind(this);
 	}
 
 	componentDidMount(){
@@ -21,26 +23,31 @@ class GetExchangeRate extends React.Component {
 				console.error('błąd', 'error');
 			}
 			this.setState({
-				currencies: data
+				currencies: data[0].rates
 			})
 		}
 		dataLoader.send(null);
-
-		
 	}
 
+	handleChange(event) {
+	    this.setState({value: event.target.value});
+	  }
+
+
 	render(){
-		console.log(this.state)
 		const { currencies } = this.state
+
+		console.log(this.state);
 		return (
 		   	<div className="col-md-3">
-              <select name="currencies" className="styled-select">
-        	      {currencies[0] ? currencies[0].rates.map( (e) => <option>{e.code}</option> ) : '' }
+              <select name="currencies" className="styled-select" value={this.state.value} onChange={this.handleChange}>
+        	      {currencies ? currencies.map( (event, index) => <option value={event.mid} key={index}>{event.code}</option> ) : '' }
               </select>
-           	</div>
-                        
+							<span>{this.state.value}</span>
+      	</div>
+
         )
-			
+
 	}
 
 }
