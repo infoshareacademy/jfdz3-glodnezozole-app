@@ -6,7 +6,7 @@ class GetExchangeRate extends React.Component {
 		super(props);
 		this.state = {
 			currencies: [],
-			value: 0,
+			value: 'wybierz walute',
 		}
 		this.handleChange = this.handleChange.bind(this);
 	}
@@ -39,11 +39,11 @@ class GetExchangeRate extends React.Component {
 
 		console.log(this.state);
 		return (
-		   	<div className="col-md-3">
-              <select name="currencies" className="styled-select" value={this.state.value} onChange={this.handleChange}>
+		   	<div className="currency-container">
+              <select className="currency-selector" value={this.state.value} onChange={this.handleChange}>
         	      {currencies ? currencies.map( (event, index) => <option value={event.mid} key={index}>{event.code}</option> ) : '' }
               </select>
-							<span>{this.state.value}</span>
+				<p className="currency-value">{this.state.value}</p>
       	</div>
 
         )
