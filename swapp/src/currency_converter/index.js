@@ -10,7 +10,11 @@ class Converter extends React.Component {
         super(props);
         this.state = {
             data: [],
-        }
+            saleCurrency: 'EUR',
+            purchaseCurrency: 'USD'
+        };
+        this.sale = this.sale.bind(this);
+        this.purchase = this.purchase.bind(this);
     }
 
     componentDidMount() {
@@ -30,8 +34,17 @@ class Converter extends React.Component {
         dataLoader.send(null);
     }
 
+    sale(event) {
+        this.setState({saleCurrency: event.target.value});
+    }
+
+    purchase(event) {
+        this.setState({purchaseCurrency: event.target.value});
+    }
+
     render() {
-        const { data } = this.state;
+        const { data, purchaseCurrency, saleCurrency } = this.state;
+        const list = (data[0] ? data[0].rates.map( (e, index) => <option key={index}>{e.code}</option> ) : '');
         return (
             <div className="container-fluid gray">
                 <div className="col-md-1"/>
@@ -40,8 +53,8 @@ class Converter extends React.Component {
                     <form className="form-horizontal">
                         <div className="form-group">
                             <div className="col-md-10">
-                                <select name="currencies" className="styled-select">
-                                    {data[0] ? data[0].rates.map( (e) => <option>{e.code}</option> ) : '' }
+                                <select name="currency1" className="styled-select" value={saleCurrency} onChange={this.sale}>
+                                    {list}
                                 </select>
                             </div>
                         </div>
@@ -59,8 +72,8 @@ class Converter extends React.Component {
                         <form className="form-horizontal right">
                             <div className="form-group">
                                 <div className="col-md-12">
-                                    <select name="currencies" className="styled-select">
-                                        {data[0] ? data[0].rates.map( (e) => <option>{e.code}</option> ) : '' }
+                                    <select name="currency2" className="styled-select" value={purchaseCurrency} onChange={this.purchase}>
+                                        {list}
                                     </select>
                                 </div>
                             </div>
