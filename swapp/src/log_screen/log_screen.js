@@ -1,12 +1,32 @@
 import React from 'react';
 import './log_screen.css';
 import unlocked from '../img/unlocked.svg'
+import axios from 'axios'
 
 const FB = window.FB
 
 class LogScreen extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            login: '',
+            name: '',
+            surname: '',
+            email: '',
+            password: ''
+        };
+    }
 
 componentDidMount() {
+        axios.get('http://infoshareacademy.getsandbox.com/glodnezozole/users').then(response => {
+            console.log(response.data[0])
+            this.setState({
+                // login: response.data.login,
+                email: response.data[0].email,
+                // password: response.data.password
+            })
+        })
+
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '283576598738189',
