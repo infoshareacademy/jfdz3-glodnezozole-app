@@ -10,8 +10,8 @@ class Converter extends React.Component {
         super(props);
         this.state = {
             data: [],
-            saleCurrency: 'PLN - złoty',
-            purchaseCurrency: 'EUR - euro',
+            saleCurrency: 'PLN',
+            purchaseCurrency: 'EUR',
             saleRate: 1,
             purchaseRate: []
         };
@@ -72,8 +72,10 @@ class Converter extends React.Component {
     render() {
         const {data, purchaseCurrency, saleCurrency, purchaseRate, saleRate} = this.state;
         const list = (data[0]
-            ? data[0].rates.map((e, index) => <option key={index}>{e.code} - {e.mid}</option>)
+            ? data[0].rates.map((e, index) => <option value={e.code} key={index}>{e.code} - {e.currency}</option>)
             : '');
+
+        // data rates find ten kod
 
         // console.log(data[0] ? data[0].rates : '');
 
