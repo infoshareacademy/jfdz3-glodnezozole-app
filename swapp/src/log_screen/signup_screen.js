@@ -11,20 +11,27 @@ class SignUpScreen extends React.Component{
             name: '',
             surname: '',
             email: '',
-            password: ''
+            password: '',
+            id: ''
         };
     }
 
+    componentDidMount(){
+        axios.get('http://infoshareacademy.getsandbox.com/glodnezozole/users').then(response =>{
+            this.setState({
+                id: response.data.length -1,
+            })
+        })
+    }
     sendData = (e) => {
         const { login, email, password } = this.state;
         e.preventDefault();
         axios.post('http://infoshareacademy.getsandbox.com/glodnezozole/users', {
             login: this.state.login,
             email: this.state.email,
-            password: this.state.password
-        }).then(function (response) {
-            console.log(response);
-        })
+            password: this.state.password,
+            id: this.state.id+1
+        },).then(response => console.log(response))
     }
 
     loginChanged = ({currentTarget: t}) => this.setState({login: t.value})
