@@ -12,19 +12,14 @@ class Converter extends React.Component {
             data: [],
             saleCurrency: 'PLN',
             purchaseCurrency: 'EUR',
-            saleRate: 1,
-            purchaseRate: []
         };
         this.changeSaleCurrency = this.changeSaleCurrency.bind(this);
         this.changePurchaseCurrency = this.changePurchaseCurrency.bind(this);
-        this.loadData('http://api.nbp.pl/api/exchangerates/tables/a/?format=json', 'data');
-        // this.loadSaleRate('http://api.nbp.pl/api/exchangerates/rates/a/eur/?format=json', 'saleRate');
-
     }
 
-    loadData = (url, field) => {
-        const dataLoader = new XMLHttpRequest();
-        dataLoader.open('GET', url);
+    componentDidMount() {
+        let dataLoader = new XMLHttpRequest();
+        dataLoader.open('GET', 'http://api.nbp.pl/api/exchangerates/tables/a/?format=json');
         dataLoader.onload = () => {
             let data = dataLoader.responseText;
             let jsonData;
@@ -35,31 +30,10 @@ class Converter extends React.Component {
             }
             const pln = {code: 'PLN', currency: 'złoty', mid: 1};
             jsonData[0].rates.push(pln);
-            this.setState({[field]: jsonData});
-        };
+            this.setState({data: jsonData});
+        }
         dataLoader.send(null);
     }
-
-    // loadSaleRate = (url, field) => {
-    //     const dataLoader = new XMLHttpRequest();
-    //     dataLoader.open('GET', url);
-    //     dataLoader.onload = () => {
-    //         let saleRate = dataLoader.responseText;
-    //         let jsonData;
-    //         try {
-    //             jsonData = JSON.parse(saleRate);
-    //         } catch (error) {
-    //             jsonData = [];
-    //         }
-    //         this.setState({[field]: jsonData});
-    //         console.log(jsonData.rates[0].mid);
-    //     };
-    //     dataLoader.send(null);
-    // }
-
-    // changeSaleRate(event) {
-    //     this.setState({saleRate: event.target.value});
-    // }
 
     changeSaleCurrency(event) {
         this.setState({saleCurrency: event.target.value});
@@ -70,12 +44,12 @@ class Converter extends React.Component {
     }
 
     render() {
-        const {data, purchaseCurrency, saleCurrency, purchaseRate, saleRate} = this.state;
+        const {data, purchaseCurrency, saleCurrency} = this.state;
         const list = (data[0]
             ? data[0].rates.map((e, index) => <option value={e.code} key={index}>{e.code} - {e.currency}</option>)
             : '');
-
-        // data rates find ten kod
+        const saleRate = data[0] ? (data[0].rates.find(e => e.code === saleCurrency)).mid : '';
+        const purchaseRate = data[0] ? (data[0].rates.find(e => e.code === purchaseCurrency)).mid : '';
 
         // console.log(data[0] ? data[0].rates : '');
 
@@ -87,7 +61,9 @@ class Converter extends React.Component {
                     <form className="form-horizontal">
                         <div className="form-group">
                             <div className="col-md-10">
-                                <select name="currency1" className="styled-select" value={saleCurrency}
+                                <select name="currency1"
+                                        className="styled-select"
+                                        value={saleCurrency}
                                         onChange={this.changeSaleCurrency}>
                                     {list}
                                 </select>
@@ -96,7 +72,9 @@ class Converter extends React.Component {
                         <h4>Ilość:</h4>
                         <div className="form-group">
                             <div className="col-md-10">
-                                <input className="form-control" type="text" defaultValue={saleRate}/>
+                                <input className="form-control"
+                                       type="text"
+                                       value={saleRate}/>
                             </div>
                         </div>
                     </form>
@@ -107,7 +85,9 @@ class Converter extends React.Component {
                         <form className="form-horizontal right">
                             <div className="form-group">
                                 <div className="col-md-12">
-                                    <select name="currency2" className="styled-select" value={purchaseCurrency}
+                                    <select name="currency2"
+                                            className="styled-select"
+                                            value={purchaseCurrency}
                                             onChange={this.changePurchaseCurrency}>
                                         {list}
                                     </select>
@@ -116,7 +96,9 @@ class Converter extends React.Component {
                             <h4>Ilość:</h4>
                             <div className="form-group">
                                 <div className="col-md-12">
-                                    <input className="form-control" type="text" defaultValue={purchaseRate}/>
+                                    <input className="form-control"
+                                           type="text"
+                                           value={purchaseRate}/>
                                 </div>
                             </div>
                         </form>
