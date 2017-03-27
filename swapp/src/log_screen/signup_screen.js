@@ -7,7 +7,6 @@ class SignUpScreen extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            login: '',
             name: '',
             surname: '',
             email: '',
@@ -19,35 +18,29 @@ class SignUpScreen extends React.Component{
     componentDidMount(){
         axios.get('http://infoshareacademy.getsandbox.com/glodnezozole/users').then(response =>{
             this.setState({
-                id: response.data.length -1,
+                id: response.data.length
             })
         })
     }
     sendData = (e) => {
-        const { login, email, password } = this.state;
         e.preventDefault();
         axios.post('http://infoshareacademy.getsandbox.com/glodnezozole/users', {
-            login: this.state.login,
             email: this.state.email,
             password: this.state.password,
-            id: this.state.id+1
+            id: this.state.id
         },).then(response => console.log(response))
     }
 
-    loginChanged = ({currentTarget: t}) => this.setState({login: t.value})
     emailChanged = ({currentTarget: t}) => this.setState({email: t.value})
     passwordChanged = ({currentTarget: t}) => this.setState({password: t.value})
 
 
         render(){
-            const { login, email, password } = this.state;
-
         return (
             <div className="wrapper">
                 <form onSubmit={this.sendData}>
                     <div className="icon"><img src={unlocked} alt="lock"></img></div>
                     <h1>Wpisz swoje dane dostępu</h1>
-                    <input type="text" placeholder="Login" onChange={this.loginChanged}></input>
                     <input type="text" placeholder="Imię"></input>
                     <input type="text" placeholder="Nazwisko"></input>
                     <input type="text" placeholder="Mail" onChange={this.emailChanged}></input>
