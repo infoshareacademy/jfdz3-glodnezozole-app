@@ -10,11 +10,13 @@ class Converter extends React.Component {
         super(props);
         this.state = {
             data: [],
-            saleCurrency: 'PLN',
-            purchaseCurrency: 'EUR',
+            saleCurrency: '- wybierz walutę',
+            purchaseCurrency: '- wybierz walutę',
+            saleAmount: ''
         };
         this.changeSaleCurrency = this.changeSaleCurrency.bind(this);
         this.changePurchaseCurrency = this.changePurchaseCurrency.bind(this);
+        this.changeSaleAmount = this.changeSaleAmount.bind(this);
     }
 
     componentDidMount() {
@@ -29,7 +31,17 @@ class Converter extends React.Component {
                 jsonData = [];
             }
             const pln = {code: 'PLN', currency: 'złoty', mid: 1};
+            const init = {code: '- wybierz walutę', currency: '', mid: ''};
+
             jsonData[0].rates.push(pln);
+
+            const sortCodes = (a, b) => {return (a < b) ? -1 : (a > b) ? 1 : 0};
+            jsonData[0].rates.sort(function (a, b) {
+                return sortCodes(a.code, b.code)
+            });
+
+            jsonData[0].rates.push(init);
+
             this.setState({data: jsonData});
         }
         dataLoader.send(null);
@@ -43,15 +55,28 @@ class Converter extends React.Component {
         this.setState({purchaseCurrency: event.target.value});
     }
 
+    changeSaleAmount(event) {
+        this.setState({saleAmount: event.currentTarget.value});
+    }
+
     render() {
-        const {data, purchaseCurrency, saleCurrency} = this.state;
+        const {data, purchaseCurrency, saleCurrency, saleAmount} = this.state;
+
         const list = (data[0]
             ? data[0].rates.map((e, index) => <option value={e.code} key={index}>{e.code} - {e.currency}</option>)
             : '');
-        const saleRate = data[0] ? (data[0].rates.find(e => e.code === saleCurrency)).mid : '';
-        const purchaseRate = data[0] ? (data[0].rates.find(e => e.code === purchaseCurrency)).mid : '';
 
-        // console.log(data[0] ? data[0].rates : '');
+        const saleRate = data[0]
+            ? (data[0].rates.find(e => e.code === saleCurrency)).mid
+            : '';
+
+        const purchaseRate = data[0]
+            ? (data[0].rates.find(e => e.code === purchaseCurrency)).mid
+            : '';
+
+        const result = isNaN(saleRate / purchaseRate * saleAmount) === true || (saleRate / purchaseRate * saleAmount) === Infinity
+            ? '- wybierz waluty i ilość -'
+            : (saleRate / purchaseRate * saleAmount).toFixed(2);
 
         return (
             <div className="container-fluid gray">
@@ -74,7 +99,9 @@ class Converter extends React.Component {
                             <div className="col-md-10">
                                 <input className="form-control"
                                        type="text"
-                                       value={saleRate}/>
+                                       value={saleAmount}
+                                       onChange={this.changeSaleAmount}
+                                />
                             </div>
                         </div>
                     </form>
@@ -98,7 +125,8 @@ class Converter extends React.Component {
                                 <div className="col-md-12">
                                     <input className="form-control"
                                            type="text"
-                                           value={purchaseRate}/>
+                                           value={result}
+                                    />
                                 </div>
                             </div>
                         </form>
