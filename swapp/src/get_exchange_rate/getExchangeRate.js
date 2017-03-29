@@ -1,5 +1,6 @@
 import React from 'react';
 import './getExchangeRate.css'
+import axios from 'axios'
 
 class GetExchangeRate extends React.Component {
 	constructor(props){
@@ -12,21 +13,12 @@ class GetExchangeRate extends React.Component {
 	}
 
 	componentDidMount(){
-		let dataLoader = new XMLHttpRequest();
-
-		dataLoader.open('GET', 'http://api.nbp.pl/api/exchangerates/tables/a/?format=json');
-		dataLoader.onload = () => {
-			let data;
-			try {
-				data = JSON.parse(dataLoader.responseText);
-			} catch (error) {
-				console.error('błąd', 'error');
-			}
+		axios.get('http://api.nbp.pl/api/exchangerates/tables/a/?format=json')
+		.then(response => {
 			this.setState({
-				currencies: data[0].rates
+				currencies: response.data[0].rates
 			})
-		}
-		dataLoader.send(null);
+		})
 	}
 
 	handleChange(event) {
@@ -36,8 +28,6 @@ class GetExchangeRate extends React.Component {
 
 	render(){
 		const { currencies } = this.state
-
-		console.log(this.state);
 		return (
 		   	<div className="currency-container">
               <select className="currency-selector" value={this.state.value} onChange={this.handleChange}>

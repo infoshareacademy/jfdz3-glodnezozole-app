@@ -33,7 +33,7 @@ class SignUpScreen extends React.Component{
 
         return (
             <div className="wrapper">
-                <form>
+                <form className="log">
                     <div className="icon"><img src={unlocked} alt="lock"></img></div>
                     <h1>Wpisz swoje dane dostępu</h1>
                     <input type="text" placeholder="Imię"></input>

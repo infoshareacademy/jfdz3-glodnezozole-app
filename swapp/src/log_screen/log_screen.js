@@ -93,7 +93,7 @@ handleClick() {
         render(){
         return (
             <div className="wrapper">
-                <form>
+                <form className="log">
                     <div className="icon"><img src={unlocked} alt="lock"></img></div>
                     <h1>Wpisz swoje dane urzytkownika</h1>
                     <input type="text" placeholder="Email"></input>
