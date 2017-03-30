@@ -9,7 +9,8 @@ class ExchangeRateHistory extends React.Component {
 			currencies: [],
 			startDate: '',
 			endDate: '',
-			currencyCode: ''
+			currencyCode: '',
+			rates: []
 
 		}
 		this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
@@ -26,23 +27,27 @@ class ExchangeRateHistory extends React.Component {
 		})
 		const currDate = new Date();
 		const today = currDate.toISOString().substring(0, 10);
-		const lastMount = currDate.setDate(currDate.getDate()-30);
-		const iso = lastMount.toISOString()
-		console.log(today, lastMount, iso)
+		const lastMount = new Date().setDate(currDate.getDate()-30);
+		const lastMouthDate = new Date(lastMount).toISOString().substring(0, 10);
 		this.setState({
-			startDate: lastMount,
+			startDate: lastMouthDate,
 			endDate: today
 		})
 	}
 
 	componentDidUpdate(prevProps, prevState) {
 		// console.log(prevState, this.state)
+		const { startDate, endDate, currencyCode } = this.state;
 		if (prevState.currencyCode != this.state.currencyCode) {
-			console.log(prevState, this.state)
+			axios.get(`http://api.nbp.pl/api/exchangerates/rates/a/${currencyCode}/${startDate}/${endDate}/?format=json`)
+			.then(response => {
+				this.setState({
+					rates: response.data.rates
+									})
+				console.log(this.state.rates)})
 		}
-		// const { startDate, endDate, currencyCode } = this.state;
-		// axios.get(`http://api.nbp.pl/api/exchangerates/rates/tables/a/${currencyCode}/${startDate}/${endDate}/?format=json`)
-		// .then(response => console.log(response))
+
+
 
 	}
 
