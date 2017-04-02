@@ -13,10 +13,10 @@ class ExchangeRateHistory extends React.Component {
             currencyCode: '',
             rates: [],
             data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                labels: [],
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: [],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -40,7 +40,7 @@ class ExchangeRateHistory extends React.Component {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero:true
+                            beginAtZero: true
                         }
                     }]
                 }
@@ -69,21 +69,14 @@ class ExchangeRateHistory extends React.Component {
         })
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        // console.log(prevState, this.state)
-        const {startDate, endDate, currencyCode} = this.state;
-        if (prevState.currencyCode != this.state.currencyCode) {
-            axios.get(`http://api.nbp.pl/api/exchangerates/rates/a/${currencyCode}/${startDate}/${endDate}/?format=json`)
-                .then(response => {
-                    this.setState({
-                        rates: response.data.rates
-                    })
-                    console.log(this.state.rates)
-                })
-        }
-
-
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     // console.log(prevState, this.state)
+    //     const {startDate, endDate, currencyCode} = this.state;
+    //     if (prevState.currencyCode != this.state.currencyCode) {
+    //     }
+    //
+    //
+    // }
 
     handleChangeStartDate(event) {
         // console.log('startDate'+event.target.value)
@@ -96,7 +89,45 @@ class ExchangeRateHistory extends React.Component {
     }
 
     handleChangeCurrencyCode(event) {
-        this.setState({currencyCode: event.target.value});
+        let val = event.target.value;
+        const {startDate, endDate, currencyCode} = this.state;
+        axios.get(`http://api.nbp.pl/api/exchangerates/rates/a/${val}/${startDate}/${endDate}/?format=json`)
+            .then(response => {
+
+                console.log(response.data.rates)
+                this.setState({
+                    currencyCode: val,
+                    data: this.getChartData(response.data.rates)
+                });
+
+            })
+    }
+
+    getChartData(rates) {
+        return {
+            labels: rates.map( (e) => e.effectiveDate ),
+            datasets: [{
+                label: '# of Votes',
+                data: rates.map( (e) => e.mid ),
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
     }
 
     render() {
@@ -106,17 +137,17 @@ class ExchangeRateHistory extends React.Component {
                 <p className="currency-value">wybierz walute</p>
                 <select className="currency-selector" value={this.state.value} onChange={this.handleChangeCurrencyCode}>
                     {currencies ? currencies.map((event, index) =>
-                        <option
-                            value={event.code}
-                            key={index}
-                        >{event.code}
-                        </option>) : '' }
+                            <option
+                                value={event.code}
+                                key={index}
+                            >{event.code}
+                            </option>) : '' }
                 </select>
                 <form>
                     <input className="currency-selector" type="date" onChange={this.handleChangeStartDate}></input>
                     <input className="currency-selector" type="date" onChange={this.handleChangeEndDate}></input>
                 </form>
-                <Line data={this.state.data} options={this.state.options} width="600" height="250" redraw />
+                <Line data={this.state.data} options={this.state.options} width="600" height="250" redraw/>
             </div>
 
         )
