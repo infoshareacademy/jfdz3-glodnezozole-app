@@ -1,54 +1,90 @@
 import React from 'react';
-import './getExchangeRate.css'
 
 class GetExchangeRate extends React.Component {
-	constructor(props){
+
+	constructor(props) {
 		super(props);
 		this.state = {
-			currencies: [],
-			value: 'wybierz walute',
-		}
-		this.handleChange = this.handleChange.bind(this);
+			data: [],
+			purchaseCurrency: '- wybierz walutę'
+		};
+		this.changePurchaseCurrency = this.changePurchaseCurrency.bind(this);
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		let dataLoader = new XMLHttpRequest();
-
 		dataLoader.open('GET', 'http://api.nbp.pl/api/exchangerates/tables/a/?format=json');
 		dataLoader.onload = () => {
-			let data;
+			let data = dataLoader.responseText;
+			let jsonData;
 			try {
-				data = JSON.parse(dataLoader.responseText);
+				jsonData = JSON.parse(data);
 			} catch (error) {
-				console.error('błąd', 'error');
+				jsonData = [];
 			}
-			this.setState({
-				currencies: data[0].rates
-			})
+			const pln = {code: 'PLN', currency: 'złoty', mid: 1};
+			const init = {code: '- wybierz walutę', currency: '', mid: '- wybierz walutę -'};
+
+			jsonData[0].rates.push(pln);
+
+			const sortCodes = (a, b) => {return (a < b) ? -1 : (a > b) ? 1 : 0};
+			jsonData[0].rates.sort(function (a, b) {
+				return sortCodes(a.code, b.code)
+			});
+
+			jsonData[0].rates.push(init);
+
+			this.setState({data: jsonData});
 		}
 		dataLoader.send(null);
 	}
 
-	handleChange(event) {
-	    this.setState({value: event.target.value});
-	  }
-
-
-	render(){
-		const { currencies } = this.state
-
-		console.log(this.state);
-		return (
-		   	<div className="currency-container">
-              <select className="currency-selector" value={this.state.value} onChange={this.handleChange}>
-        	      {currencies ? currencies.map( (event, index) => <option value={event.mid} key={index}>{event.code}</option> ) : '' }
-              </select>
-				<p className="currency-value">{this.state.value}</p>
-      	</div>
-
-        )
-
+	changePurchaseCurrency(event) {
+		this.setState({purchaseCurrency: event.target.value});
 	}
 
+	render() {
+		const {data, purchaseCurrency} = this.state;
+
+		const list = (data[0]
+			? data[0].rates.map((e, index) => <option value={e.code} key={index}>{e.code} - {e.currency}</option>)
+			: '');
+
+		const purchaseRate = data[0]
+			? (data[0].rates.find(e => e.code === purchaseCurrency)).mid
+			: '';
+
+		return (
+			<div className="container-fluid gray">
+				<div className="col-md-1"/>
+				<div className="col-md-10">
+						<h3>Sprawdź kurs waluty:</h3>
+						<form className="form-horizontal right">
+							<div className="form-group">
+								<div className="col-md-12">
+									<select name="currency2"
+											className="styled-select"
+											value={purchaseCurrency}
+											onChange={this.changePurchaseCurrency}>
+										{list}
+									</select>
+								</div>
+							</div>
+							<h4>Kurs:</h4>
+							<div className="form-group">
+								<div className="col-md-12">
+									<input className="form-control"
+										   type="text"
+										   value={purchaseRate}
+									/>
+								</div>
+							</div>
+						</form>
+					</div>
+				<div className="col-md-1"/>
+				</div>
+
+		)
+	}
 }
 export default GetExchangeRate;
