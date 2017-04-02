@@ -7,15 +7,21 @@ import LogScreen from './log_screen/log_screen';
 import SignUpScreen from './log_screen/signup_screen';
 import GetExchangeRate from './get_exchange_rate/getExchangeRate';
 
+import Teaser from './teaser/teaser';
+import Converter from './currency_converter';
+
+
 class App extends Component {
     render() {
         return (
             <div>
                 <GetExchangeRate/>
+                <Teaser/>
                 <FunctionList/>
                 <AboutUs/>
                 <LogScreen/>
                 <SignUpScreen/>
+                <Converter/>
             </div>
         );
     }

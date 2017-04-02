@@ -1,0 +1,34 @@
+/*-----------------Teaser-----------------*/
+@media screen and (max-width: 768px) {
+    article.teaser {
+        padding-top: 15%;}
+
+    section.teaser {
+        max-width: 100%; }
+
+    section.teaser img {
+        max-width: 200px;
+        width: 100%; }
+
+    section.teaser h2 {
+        font-size: 150%; } }
+@media screen and (min-width: 769px) {
+    article.teaser {
+        padding-top: 15%;
+        padding-bottom: 8% }
+
+    section.teaser {
+        display: flex;
+        align-items: center;
+        max-width: 100%; }
+
+    section.teaser img {
+        max-width: 200px;
+        width: 100%; }
+
+    section.teaser img:hover {
+        zoom: 110%;
+        transition: all 1s ease; }
+
+    section.teaser h2 {
+        text-align: center; } }
