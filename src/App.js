@@ -15,13 +15,13 @@ class App extends Component {
     render() {
         return (
             <div>
-                <GetExchangeRate/>
                 <Teaser/>
                 <FunctionList/>
                 <AboutUs/>
+                <Converter/>
+                <GetExchangeRate/>
                 <LogScreen/>
                 <SignUpScreen/>
-                <Converter/>
             </div>
         );
     }

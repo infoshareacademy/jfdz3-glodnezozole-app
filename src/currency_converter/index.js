@@ -81,7 +81,7 @@ class Converter extends React.Component {
         return (
             <div className="container-fluid gray">
                 <div className="col-md-1"/>
-                <div className="currency_left col-md-5">
+                <div className="col-md-5">
                     <h3>Waluta, którą masz:</h3>
                     <form className="form-horizontal">
                         <div className="form-group">
@@ -106,7 +106,7 @@ class Converter extends React.Component {
                         </div>
                     </form>
                 </div>
-                <div className="currency_right col-md-5">
+                <div className="col-md-5">
                     <div className="col-md-offset-2">
                         <h3>Waluta, której potrzebujesz:</h3>
                         <form className="form-horizontal right">

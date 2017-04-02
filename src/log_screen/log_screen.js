@@ -94,12 +94,12 @@ handleClick() {
         return (
             <div className="wrapper">
                 <form>
-                    <div className="icon"><img src={unlocked} alt="lock"></img></div>
-                    <h1>Wpisz swoje dane urzytkownika</h1>
-                    <input type="text" placeholder="Email"></input>
-                    <input type="password" placeholder="Hasło"></input>
-                    <input type="submit" value="Zaloguj się"></input>
-                    <input type="submit" value="Zaloguj się przez Facebook" onClick={this.handleClick}></input>
+                    <div className="icon"><img src={unlocked} alt="lock"/></div>
+                    <h1>Wpisz swoje dane użytkownika</h1>
+                    <input type="text" placeholder="Email"/>
+                    <input type="password" placeholder="Hasło"/>
+                    <input type="submit" value="Zaloguj się"/>
+                    <input type="submit" value="Zaloguj się przez Facebook" onClick={this.handleClick}/>
                 </form>
            </div>
             )}

@@ -34,14 +34,14 @@ class SignUpScreen extends React.Component{
         return (
             <div className="wrapper">
                 <form>
-                    <div className="icon"><img src={unlocked} alt="lock"></img></div>
+                    <div className="icon"><img src={unlocked} alt="lock"/></div>
                     <h1>Wpisz swoje dane dostępu</h1>
-                    <input type="text" placeholder="Imię"></input>
-                    <input type="text" placeholder="Nazwisko"></input>
-                    <input type="text" placeholder="Mail"></input>
-                    <input type="password" placeholder="Hasło"></input>
-                    <input type="password" placeholder="Powtórz hasło"></input>
-                    <input type="submit" onClick={this.signInSubmit} value="Utwórz konto"></input>
+                    <input type="text" placeholder="Imię"/>
+                    <input type="text" placeholder="Nazwisko"/>
+                    <input type="text" placeholder="Mail"/>
+                    <input type="password" placeholder="Hasło"/>
+                    <input type="password" placeholder="Powtórz hasło"/>
+                    <input type="submit" onClick={this.signInSubmit} value="Utwórz konto"/>
                 </form>
            </div>
             )}
