@@ -9,6 +9,7 @@ var scroll     = Scroll.animateScroll;
 
 var NavigationBar = React.createClass({
 
+
     render: function () {
         return (
             <div className="">
@@ -17,9 +18,9 @@ var NavigationBar = React.createClass({
                         <div className="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
                             <img className="logo navbar-left" src={Swapp} onClick={() => scroll.scrollToTop()} alt="SWAPP"/>
                             <ul className="nav navbar-nav navbar-right">
-                                <li><Link activeClass="active" onClick={() => scroll.scrollToTop()} className="linkMod" to="Teaser" spy={true} smooth={true} duration={500} >Start</Link></li>
-                                <li><Link activeClass="active" onClick={() => scroll.scrollTo(850)} className="linkMod" to="FunctionList" spy={true} smooth={true} duration={500}>Lista Funkcji</Link></li>
-                                <li><Link activeClass="active" onClick={() => scroll.scrollToBottom()} className="linkMod" to="AboutUs" spy={true} smooth={true} duration={500} >O Nas!</Link></li>
+                                <li><Link activeClass="active" className="linkMod" to="trailer" spy={true} smooth={true} duration={500} >Start</Link></li>
+                                <li><Link activeClass="active" className="linkMod" to="functionlist" spy={true} smooth={true} duration={500}>Lista Funkcji</Link></li>
+                                <li><Link activeClass="active" className="linkMod" to="dream_team" spy={true} smooth={true} duration={500} >O Nas!</Link></li>
                             </ul>
                         </div>
                     </div>
