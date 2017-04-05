@@ -25,28 +25,32 @@ class SignUpScreen extends React.Component{
     sendData = (e) => {
         e.preventDefault();
         axios.post('http://infoshareacademy.getsandbox.com/glodnezozole/users', {
+            name: this.state.name,
+            surname: this.state.surname,
             email: this.state.email,
             password: this.state.password,
             id: this.state.id
         },).then(response => console.log(response))
-    }
+    };
 
-    emailChanged = ({currentTarget: t}) => this.setState({email: t.value})
-    passwordChanged = ({currentTarget: t}) => this.setState({password: t.value})
+    nameChanged = ({currentTarget: t}) => this.setState({name: t.value});
+    surnameChanged = ({currentTarget: t}) => this.setState({surname: t.value});
+    emailChanged = ({currentTarget: t}) => this.setState({email: t.value});
+    passwordChanged = ({currentTarget: t}) => this.setState({password: t.value});
 
 
         render(){
         return (
             <div className="wrapper">
                 <form onSubmit={this.sendData}>
-                    <div className="icon"><img src={unlocked} alt="lock"></img></div>
+                    <div className="icon"><img src={unlocked} alt="lock"/></div>
                     <h1>Wpisz swoje dane dostępu</h1>
-                    <input type="text" placeholder="Imię"></input>
-                    <input type="text" placeholder="Nazwisko"></input>
-                    <input type="text" placeholder="Mail" onChange={this.emailChanged}></input>
-                    <input type="password" placeholder="Hasło" onChange={this.passwordChanged}></input>
-                    <input type="password" placeholder="Powtórz hasło"></input>
-                    <input type="submit" value="Utwórz konto"></input>
+                    <input type="text" placeholder="Imię" onChange={this.nameChanged}/>
+                    <input type="text" placeholder="Nazwisko" onChange={this.surnameChanged}/>
+                    <input type="text" placeholder="Mail" onChange={this.emailChanged}/>
+                    <input type="password" placeholder="Hasło" onChange={this.passwordChanged}/>
+                    <input type="password" placeholder="Powtórz hasło"/>
+                    <input type="submit" value="Utwórz konto"/>
                 </form>
            </div>
             )}
