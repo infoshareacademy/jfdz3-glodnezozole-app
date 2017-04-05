@@ -29,11 +29,11 @@ class LogScreen extends React.Component {
         return (
             <div className="wrapper">
                 <form>
-                    <div className="icon"><img src={unlocked} alt="lock"></img></div>
+                    <div className="icon"><img src={unlocked} alt="lock"/></div>
                     <h1>Wpisz swoje dane użytkownika</h1>
-                    <input type="text" placeholder="Email"></input>
-                    <input type="password" placeholder="Hasło"></input>
-                    <input type="submit" value="Zaloguj się"></input>
+                    <input type="text" placeholder="Email"/>
+                    <input type="password" placeholder="Hasło"/>
+                    <input type="submit" value="Zaloguj się"/>
                     <FacebookLogin
                         appId="1088597931155576"
                         autoLoad={false}
