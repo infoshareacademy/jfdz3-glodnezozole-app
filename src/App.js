@@ -21,9 +21,9 @@ class App extends Component {
                 <AboutUs/>
                 <Converter/>
                 <GetExchangeRate/>
+                <ExchangeRateHistory/>
                 <LogScreen/>
                 <SignUpScreen/>
-                <ExchangeRateHistory/>
 
 
             </div>

@@ -1,7 +1,8 @@
 import React from 'react';
-import './exchangeRateHistory.css'
 import axios from 'axios'
+import './exchangeRateHistory.css'
 var Line = require("react-chartjs").Line;
+
 
 class ExchangeRateHistory extends React.Component {
     constructor(props) {
@@ -69,14 +70,6 @@ class ExchangeRateHistory extends React.Component {
         })
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     // console.log(prevState, this.state)
-    //     const {startDate, endDate, currencyCode} = this.state;
-    //     if (prevState.currencyCode != this.state.currencyCode) {
-    //     }
-    //
-    //
-    // }
 
     handleChangeStartDate(event) {
         // console.log('startDate'+event.target.value)
@@ -105,10 +98,10 @@ class ExchangeRateHistory extends React.Component {
 
     getChartData(rates) {
         return {
-            labels: rates.map( (e) => e.effectiveDate ),
+            labels: rates.map((e) => e.effectiveDate),
             datasets: [{
                 label: '# of Votes',
-                data: rates.map( (e) => e.mid ),
+                data: rates.map((e) => e.mid),
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -137,22 +130,23 @@ class ExchangeRateHistory extends React.Component {
                 <p className="currency-value">wybierz walute</p>
                 <select className="currency-selector" value={this.state.value} onChange={this.handleChangeCurrencyCode}>
                     {currencies ? currencies.map((event, index) =>
-                            <option
-                                value={event.code}
-                                key={index}
-                            >{event.code}
-                            </option>) : '' }
+                        <option
+                            value={event.code}
+                            key={index}
+                        >{event.code}
+                        </option>) : '' }
                 </select>
                 <form>
-                    <input className="currency-selector" type="date" onChange={this.handleChangeStartDate}></input>
-                    <input className="currency-selector" type="date" onChange={this.handleChangeEndDate}></input>
+                    <input className="currency-selector" value={this.state.startDate} type="date" onChange={this.handleChangeStartDate}/>
+                    <input className="currency-selector" value={this.state.endDate} type="date" onChange={this.handleChangeEndDate}/>
                 </form>
                 <Line data={this.state.data} options={this.state.options} width="600" height="250" redraw/>
             </div>
 
-        )
+
+                )
+
+              }
 
     }
-
-}
-export default ExchangeRateHistory;
+    export default ExchangeRateHistory;
