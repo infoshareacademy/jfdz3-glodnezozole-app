@@ -92,7 +92,7 @@ handleClick() {
 
         render(){
         return (
-            <div className="wrapper">
+            <div id="logInScreen" className="wrapper">
                 <form className="log">
                     <div className="icon"><img src={unlocked} alt="lock"></img></div>
                     <h1>Wpisz swoje dane urzytkownika</h1>

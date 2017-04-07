@@ -15,7 +15,44 @@
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
 
 @media screen and (min-width: 993px) {
-    .nav > li > a.linkMod {
-        padding: 15px 30px;
-        font-size: 18px;
+     a.linkMod {
+        padding: 15px 8px;
+        font-size: 14px;
         transition: all 0.3s; }}
+
+.active {
+    background-color:  #2d3d62;
+    border-radius: 30%;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+}
+
+nav ul a {
+    display: inline-block;
+    padding: 15px 8px 15px 8px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+@media (max-width: 999px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
