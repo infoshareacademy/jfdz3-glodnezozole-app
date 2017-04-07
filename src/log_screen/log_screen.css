@@ -1,0 +1,75 @@
+.wrapper {
+    width: 100%;
+    height: 100vh;
+    /*background-image: url('form-bg.jpg');*/
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.wrapper > form {
+    width: 90%;
+    max-width: 380px;
+    padding: 50px;
+    background: rgba(235,235,235,.9);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.wrapper > form h1 {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    color: #666;
+    margin: 30px 0 10px 0;
+}
+
+.icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(235,235,235,.9);
+    position: relative;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 1px solid #dcdcdc;
+}
+
+.icon img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wrapper > form input {
+    width: 100%;
+    height: 30px;
+    background: rgba(255,255,255, .5);
+    border: none;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+
+.wrapper > form input[type=submit] {
+    height: 40px;
+    background: #74bbfb;
+    color: #fff;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: background .3s;
+    text-transform: uppercase;
+}
+
+.wrapper > form input[type=submit]:hover {
+    background: #5baffa;
+}
+
+.wrapper > form input:focus {
+    outline-color: #ccc;
+}
