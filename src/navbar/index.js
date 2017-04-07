@@ -24,9 +24,9 @@ var NavigationBar = React.createClass({
                             <Link  activeClass="active" className="linkMod" to="functionlist" spy={true} smooth={true} duration={500}>Lista Funkcji</Link>
                             <Link  activeClass="active" className="linkMod" to="dream_team" spy={true} smooth={true} duration={500} >O Nas!</Link>
                             <Link  activeClass="active" className="linkMod" to="logInScreen" spy={true} smooth={true} duration={500} >Zaloguj</Link>
-                            <Link  activeClass="active" className="linkMod" to="logInScreen" spy={true} smooth={true} duration={500} >Kursy walut</Link>
-                            <Link  activeClass="active" className="linkMod" to="logInScreen" spy={true} smooth={true} duration={500} >Kalkulator</Link>
-                            <Link activeClass="active" className="linkMod" to="logInScreen" spy={true} smooth={true} duration={500} >Historia</Link>
+                            <Link  activeClass="active" className="linkMod" to="GetExchangeRate" spy={true} smooth={true} duration={500} >Kursy walut</Link>
+                            <Link  activeClass="active" className="linkMod" to="Converter" spy={true} smooth={true} duration={500} >Kalkulator</Link>
+                            <Link activeClass="active" className="linkMod" to="ExchangeRateHistory" spy={true} smooth={true} duration={500} >Historia</Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

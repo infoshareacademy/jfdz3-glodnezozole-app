@@ -126,7 +126,7 @@ class ExchangeRateHistory extends React.Component {
     render() {
         const {currencies} = this.state;
         return (
-            <div className="currency-container">
+            <div className="currency-container" id="ExchangeRateHistory">
                 <p className="currency-value">wybierz walute</p>
                 <select className="currency-selector" value={this.state.value} onChange={this.handleChangeCurrencyCode}>
                     {currencies ? currencies.map((event, index) =>
