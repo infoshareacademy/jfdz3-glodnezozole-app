@@ -7,7 +7,7 @@
     position: relative;
 }
 
-form {
+.wrapper > form {
     width: 90%;
     max-width: 380px;
     padding: 50px;
@@ -19,7 +19,7 @@ form {
     text-align: center;
 }
 
-form h1 {
+.wrapper > form h1 {
     text-transform: uppercase;
     font-weight: 500;
     font-size: 18px;
@@ -45,7 +45,7 @@ form h1 {
     transform: translate(-50%, -50%);
 }
 
-form input {
+.wrapper > form input {
     width: 100%;
     height: 30px;
     background: rgba(255,255,255, .5);
@@ -56,7 +56,7 @@ form input {
     color: #666;
 }
 
-form input[type=submit], .my-facebook-button-class {
+.wrapper > form input[type=submit] {
     height: 40px;
     background: #74bbfb;
     color: #fff;
@@ -66,16 +66,10 @@ form input[type=submit], .my-facebook-button-class {
     text-transform: uppercase;
 }
 
-.my-facebook-button-class {
-    width: 100%;
-    height: 40px;
-    border: none;
-}
-
-form input[type=submit]:hover, .my-facebook-button-class:hover {
+.wrapper > form input[type=submit]:hover {
     background: #5baffa;
 }
 
-form input:focus {
+.wrapper > form input:focus {
     outline-color: #ccc;
 }
