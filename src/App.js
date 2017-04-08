@@ -21,7 +21,8 @@ class App extends Component {
         super();
 
         this.state = {
-            showModal: false
+            showModal: false,
+            showRegistration: false
         };
     }
 
@@ -42,6 +43,18 @@ class App extends Component {
 
     close = () => { this.setState({showModal: false});};
 
+    onRegistration = () => {
+        this.setState({ showRegistration: true });
+    };
+
+    onLogin = () => {
+        this.setState({ showRegistration: false });
+    };
+
+    isUserLoggedIn = () => {
+      return window.sessionStorage.getItem('applicationInfoshare') === 'true' ? true : false;
+    };
+
     renderModal() {
         return (
             <div>
@@ -57,20 +70,34 @@ class App extends Component {
 
         );
     }
+
+    renderWhenImLoggedIn() {
+        return (
+            <div>
+                <GetExchangeRate/>
+                <Converter/>
+                <ExchangeRateHistory/>
+            </div>
+        );
+    }
+
+    renderWhenImNotLoggedIn() {
+        return (
+            <div>
+                <Teaser/>
+                <FunctionList/>
+                <AboutUs/>
+                {this.state.showRegistration ? <SignUpScreen onClick={this.onLogin}/> : <LogScreen onClick={this.onRegistration}/>}
+            </div>
+        );
+    }
+
     render() {
         return (
             <div>
                 <NavigationBar/>
-                <Teaser/>
-                <FunctionList/>
-                <AboutUs/>
-                <Converter/>
-                <GetExchangeRate/>
-                <ExchangeRateHistory/>
-                <LogScreen/>
-                <SignUpScreen/>
+                {this.isUserLoggedIn() === true ? this.renderWhenImLoggedIn() : this.renderWhenImNotLoggedIn()}
                 {this.renderModal()}
-
             </div>
         );
     }

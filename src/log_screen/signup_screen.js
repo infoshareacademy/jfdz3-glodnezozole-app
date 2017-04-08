@@ -51,6 +51,8 @@ class SignUpScreen extends React.Component{
                     <input type="password" placeholder="Hasło" onChange={this.passwordChanged} required="required"/>
                     <input type="password" placeholder="Powtórz hasło" required="required"/>
                     <input type="submit" value="Utwórz konto"/>
+
+                    <button onClick={this.props.onClick}>Zaloguj się</button>
                 </form>
            </div>
             )}

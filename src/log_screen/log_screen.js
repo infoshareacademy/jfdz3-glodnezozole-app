@@ -1,10 +1,26 @@
 import React from 'react';
 import './log_screen.css';
 import unlocked from '../img/unlocked.svg'
+import axios from 'axios'
 
 const FB = window.FB
 
 class LogScreen extends React.Component{
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            form: {
+                email: '',
+                password: ''
+            }
+        };
+
+        this.onChange = this.onChange.bind(this);
+        this.handleLogInClick = this.handleLogInClick.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
 
 componentDidMount() {
   window.fbAsyncInit = function() {
@@ -85,10 +101,34 @@ checkLoginState() {
   }.bind(this));
 }
 
-handleClick() {
-  FB.login(this.checkLoginState());
+handleClick(event) {
+    event.preventDefault();
+    FB.login(this.checkLoginState());
 }
 
+setSessionStorage() {
+    window.sessionStorage.setItem("applicationInfoshare", "true");
+}
+
+    handleLogInClick(event) {
+        event.preventDefault();
+
+        console.log('STATE', this.state.form.email);
+
+        axios.get("http://infoshareacademy.getsandbox.com/glodnezozole/users").then(response => {
+            response.data.filter((item) => {
+                if(item.email === this.state.form.email && item.password === this.state.form.password) {
+                    this.setSessionStorage();
+                }
+            });
+        });
+    }
+
+    onChange = (event) => {
+        event.preventDefault();
+        this.state.form[event.target.name] = event.target.value;
+        this.setState({form: this.state.form});
+    };
 
         render(){
         return (
@@ -96,10 +136,12 @@ handleClick() {
                 <form className="log">
                     <div className="icon"><img src={unlocked} alt="lock"></img></div>
                     <h1>Wpisz swoje dane urzytkownika</h1>
-                    <input type="text" placeholder="Email"></input>
-                    <input type="password" placeholder="Hasło"></input>
-                    <input type="submit" value="Zaloguj się"></input>
-                    <input type="submit" value="Zaloguj się przez Facebook" onClick={this.handleClick}></input>
+                    <input type="text" placeholder="Email" name="email" onChange={this.onChange} value={this.state.email} />
+                    <input type="password" placeholder="Hasło" name="password" onChange={this.onChange} value={this.state.password} />
+                    <input type="button" value="Zaloguj się" onClick={this.handleLogInClick} />
+                    <input type="button" value="Zaloguj się przez Facebook" onClick={this.handleClick}></input>
+
+                    <button onClick={this.props.onClick}>Zarejestruj się</button>
                 </form>
            </div>
             )}
