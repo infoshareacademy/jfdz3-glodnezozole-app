@@ -33,7 +33,6 @@ export default class UsersTab extends React.Component {
         //console.log('data', data);
         return(
             <div>
-                TEST
                 {this.state.data.map((item) => this.renderItem(item))}
                 </div>
         );

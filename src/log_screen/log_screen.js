@@ -39,7 +39,7 @@ class LogScreen extends React.Component {
 
 
        axios.get('http://infoshareacademy.getsandbox.com/glodnezozole/users').then(response => {
-            debugger;
+            // debugger;
             // todo
            // Dane users - response.data
            // Form input data - email i password (this.state.email i this.state.password)
