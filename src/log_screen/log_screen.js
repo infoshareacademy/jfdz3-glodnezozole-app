@@ -108,12 +108,11 @@ handleClick(event) {
 
 setSessionStorage() {
     window.sessionStorage.setItem("applicationInfoshare", "true");
+    window.location.href = '/';
 }
 
     handleLogInClick(event) {
         event.preventDefault();
-
-        console.log('STATE', this.state.form.email);
 
         axios.get("http://infoshareacademy.getsandbox.com/glodnezozole/users").then(response => {
             response.data.filter((item) => {

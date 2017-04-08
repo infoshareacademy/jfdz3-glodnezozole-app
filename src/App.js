@@ -15,7 +15,6 @@ import Converter from './currency_converter';
 import UsersTab from './usersTab/usersTab.js';
 import { Modal } from 'react-bootstrap';
 
-
 class App extends Component {
     constructor() {
         super();
@@ -77,6 +76,7 @@ class App extends Component {
                 <GetExchangeRate/>
                 <Converter/>
                 <ExchangeRateHistory/>
+                <button onClick={this.setSessionStorage}>Logout</button>
             </div>
         );
     }
@@ -92,6 +92,12 @@ class App extends Component {
         );
     }
 
+    // Wylogowywanie
+    setSessionStorage() {
+        window.sessionStorage.setItem("applicationInfoshare", "false");
+        window.location.href = '/';
+    }
+
     render() {
         return (
             <div>
@@ -104,66 +110,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-//
-//
-// class App extends Component {
-//
-//     constructor() {
-//         super();
-//
-//         this.state = {
-//             showModal: false
-//         };
-//     }
-//
-//
-//
-//     componentDidMount() {
-//
-//         const pressed = [];
-//         const secretCode = 'pig';
-//         window.addEventListener('keyup', (e) => {
-//             pressed.push(e.key);
-//             pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
-//             if (pressed.join('').includes(secretCode)) {
-//                 this.setState({
-//                     showModal: true
-//                 });
-//             }
-//         });
-//     }
-//
-//     close = () => { this.setState({showModal: false});};
-//
-//     renderModal() {
-//         return (
-//             <div>
-//                 <Modal className="modal-container" show={this.state.showModal} onHide={this.close}>
-//                     <Modal.Header closeButton >
-//                         <Modal.Title>Lista zarejestrowanych użytkowników</Modal.Title>
-//                     </Modal.Header>
-//                     <Modal.Body>
-//                         <UsersTab/>
-//                     </Modal.Body>
-//                 </Modal>
-//             </div>
-//
-//         );
-//     }
-//
-//     render() {
-//         return (
-//             <div>
-//                 <FunctionList/>
-//                 <AboutUs/>
-//                 <LogScreen/>
-//                 <SignUpScreen/>
-//                 {this.renderModal()}
-//             </div>
-//         );
-//     }
-// }
-//
-// export default App;
