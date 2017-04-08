@@ -30,3 +30,11 @@ nav ul a {
 p, span, a, li {
   font-family: 'Roboto', sans-serif;
 }
+
+.modal-container {
+  position: relative;
+}
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
+}
+

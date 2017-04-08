@@ -23,14 +23,21 @@ export default class UsersTab extends React.Component {
 
     renderItem = (item) => {
         return (
-            <p>{item.name}</p>
-        )
+            <div  className="row">
+                <ul className="col-md-offset-1 col-xs-2 tabForUsers">
+                    <li> Imie: </li><li> Nazwisko:  </li><li> Email:</li>
+                </ul>
+                <ul className="col-md-offset-1 col-xs-2 tabForUsers">
+                    <li> {item.name} </li><li> { item.surname} </li><li> { item.email}</li>
+                </ul>
+            </div>
+                )
     };
 
 
     render () {
         const {data} = this.state;
-        //console.log('data', data);
+        console.log('data', data);
         return(
             <div>
                 {this.state.data.map((item) => this.renderItem(item))}

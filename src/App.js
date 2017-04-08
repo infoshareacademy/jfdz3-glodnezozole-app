@@ -5,13 +5,12 @@ import FunctionList from './function_list';
 import AboutUs from './about_us/about_us';
 import LogScreen from './log_screen/log_screen';
 import SignUpScreen from './log_screen/signup_screen';
-//  import UsersTab from './usersTab/usersTab.js';
-// import { Modal } from 'react-bootstrap';
-import ModalTab from './modalTab/modalTab';
+import UsersTab from './usersTab/usersTab.js';
+import { Modal } from 'react-bootstrap';
 
 class App extends Component {
 
-    /* constructor() {
+     constructor() {
         super();
 
         this.state = {
@@ -24,7 +23,7 @@ class App extends Component {
     componentDidMount() {
 
         const pressed = [];
-        const secretCode = 'sudopig';
+        const secretCode = 'pig';
         window.addEventListener('keyup', (e) => {
             pressed.push(e.key);
             pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
@@ -36,14 +35,12 @@ class App extends Component {
         });
     }
 
-    hideModal() {
-        this.setState({show: false});
-    }
+    close = () => { this.setState({showModal: false});};
 
     renderModal() {
         return (
             <div>
-                <Modal class="modal-container" show={this.state.showModal} onHide={this.hideModal}>
+                <Modal className="modal-container" show={this.state.showModal} onHide={this.close}>
                     <Modal.Header closeButton >
                         <Modal.Title>Lista zarejestrowanych użytkowników</Modal.Title>
                     </Modal.Header>
@@ -54,7 +51,7 @@ class App extends Component {
             </div>
 
         );
-    }   */
+    }
 
     render() {
         return (
@@ -63,7 +60,7 @@ class App extends Component {
                 <AboutUs/>
                 <LogScreen/>
                 <SignUpScreen/>
-                <ModalTab/>
+                {this.renderModal()}
             </div>
         );
     }
