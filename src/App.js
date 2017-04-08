@@ -28,7 +28,7 @@ class App extends Component {
     componentDidMount() {
 
         const pressed = [];
-        const secretCode = 'pig';
+        const secretCode = 'sudopig';
         window.addEventListener('keyup', (e) => {
             pressed.push(e.key);
             pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);

@@ -133,12 +133,12 @@ setSessionStorage() {
         return (
             <div id="logInScreen" className="wrapper">
                 <form className="log">
-                    <div className="icon"><img src={unlocked} alt="lock"></img></div>
+                    <div className="icon"><img src={unlocked} alt="lock"/></div>
                     <h1>Wpisz swoje dane urzytkownika</h1>
-                    <input type="text" placeholder="Email" name="email" onChange={this.onChange} value={this.state.email} />
+                    <input type="email" placeholder="Email" name="email" onChange={this.onChange} value={this.state.email} />
                     <input type="password" placeholder="Hasło" name="password" onChange={this.onChange} value={this.state.password} />
                     <input type="button" value="Zaloguj się" onClick={this.handleLogInClick} />
-                    <input type="button" value="Zaloguj się przez Facebook" onClick={this.handleClick}></input>
+                    <input type="button" value="Zaloguj się przez Facebook" onClick={this.handleClick}/>
 
                     <button onClick={this.props.onClick}>Zarejestruj się</button>
                 </form>

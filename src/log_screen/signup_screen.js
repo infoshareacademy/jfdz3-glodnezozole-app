@@ -47,7 +47,7 @@ class SignUpScreen extends React.Component{
                     <h1>Wpisz swoje dane dostępu</h1>
                     <input type="text" placeholder="Imię" onChange={this.nameChanged} required="required"/>
                     <input type="text" placeholder="Nazwisko" onChange={this.surnameChanged} required="required"/>
-                    <input type="text" placeholder="Mail" onChange={this.emailChanged} required="required"/>
+                    <input type="email" placeholder="Mail" onChange={this.emailChanged} required="required"/>
                     <input type="password" placeholder="Hasło" onChange={this.passwordChanged} required="required"/>
                     <input type="password" placeholder="Powtórz hasło" required="required"/>
                     <input type="submit" value="Utwórz konto"/>
