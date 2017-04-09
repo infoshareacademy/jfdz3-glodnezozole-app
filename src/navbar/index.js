@@ -13,8 +13,6 @@ const toggleMenu = (e) => {
 
 var NavigationBar = React.createClass({
     render: function () {
-        console.log('j', sessionStorage.getItem("applicationInfoshare"))
-
         return (
 
             <Navbar collapseOnSelect className = "navbar-default navbar-fixed-top container-fluid">
@@ -30,9 +28,6 @@ var NavigationBar = React.createClass({
                             {sessionStorage.getItem("applicationInfoshare") === "false" || sessionStorage.getItem("applicationInfoshare") === null && <Link onClick={toggleMenu} activeClass="active" className="linkMod" to="functionlist" spy={true} smooth={true} duration={500}>Lista Funkcji</Link>}
                             {sessionStorage.getItem("applicationInfoshare") === "false" || sessionStorage.getItem("applicationInfoshare") === null && <Link onClick={toggleMenu} activeClass="active" className="linkMod" to="dream_team" spy={true} smooth={true} duration={500} >O Nas!</Link>}
                             {sessionStorage.getItem("applicationInfoshare") === "false" || sessionStorage.getItem("applicationInfoshare") === null && <Link onClick={toggleMenu} activeClass="active" className="linkMod" to="logInScreen" spy={true} smooth={true} duration={500} >Zaloguj</Link>}
-                            {/*{sessionStorage.getItem("applicationInfoshare") === "true" && <Link onClick={toggleMenu} activeClass="active" className="linkMod" to="GetExchangeRate" spy={true} smooth={true} duration={500} >Kursy walut</Link>}*/}
-                            {/*{sessionStorage.getItem("applicationInfoshare") === "true" && <Link onClick={toggleMenu} activeClass="active" className="linkMod" to="Converter" spy={true} smooth={true} duration={500} >Kalkulator</Link>}*/}
-                            {/*{sessionStorage.getItem("applicationInfoshare") === "true" && <Link onClick={toggleMenu} activeClass="active" className="linkMod" to="ExchangeRateHistory" spy={true} smooth={true} duration={500} >Historia</Link>}*/}
                             {sessionStorage.getItem("applicationInfoshare") === "true" && <Link onClick={this.props.logout} activeClass="active" className="linkMod" to="logInScreen" spy={true} smooth={true} duration={500} >Wyloguj</Link>}
                         </Nav>
                     </Navbar.Collapse>
