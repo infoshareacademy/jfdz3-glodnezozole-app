@@ -21,9 +21,9 @@ export default class UsersTab extends React.Component {
 
     }
 
-    renderItem = (item) => {
+    renderItem = (item, index) => {
         return (
-            <div  className="row">
+            <div className="row" key={index}>
                 <ul className="col-md-offset-1 col-xs-2 tabForUsers">
                     <li> Imie: </li><li> Nazwisko:  </li><li> Email:</li>
                 </ul>
@@ -40,7 +40,7 @@ export default class UsersTab extends React.Component {
         console.log('data', data);
         return(
             <div>
-                {this.state.data.map((item) => this.renderItem(item))}
+                {this.state.data.map((item, index) => this.renderItem(item, index))}
                 </div>
         );
     }

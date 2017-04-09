@@ -76,7 +76,7 @@ class App extends Component {
                 <GetExchangeRate/>
                 <Converter/>
                 <ExchangeRateHistory/>
-                <input className="LogOutBtn" type="button" value="Wyloguj" onClick={this.setSessionStorage}/>
+                {/*<input className="LogOutBtn" type="button" value="Wyloguj" onClick={this.setSessionStorage}/>*/}
                 {/*<button onClick={this.setSessionStorage}>Wyloguj</button>*/}
             </div>
         );
@@ -102,7 +102,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <NavigationBar/>
+                <NavigationBar logout={this.setSessionStorage}/>
                 {this.isUserLoggedIn() === true ? this.renderWhenImLoggedIn() : this.renderWhenImNotLoggedIn()}
                 {this.renderModal()}
             </div>
