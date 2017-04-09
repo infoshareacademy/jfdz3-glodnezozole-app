@@ -30,3 +30,27 @@ nav ul a {
 p, span, a, li {
   font-family: 'Roboto', sans-serif;
 }
+
+.modal-container {
+  position: relative;
+}
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
+}
+
+.LogOutBtn {
+  position: fixed;
+  bottom: 0;
+  right: 45%;
+  margin-left:43%;
+  min-height: 5%;
+  background: lightgray;
+  color: black;
+  margin-top: 3%;
+  padding: 10px;
+  border: 4px solid #42BA85;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background .3s;
+  text-transform: uppercase;
+}

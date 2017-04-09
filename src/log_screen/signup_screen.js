@@ -1,47 +1,60 @@
 import React from 'react';
 import './log_screen.css';
 import unlocked from '../img/unlocked.svg'
+import axios from 'axios'
 
 class SignUpScreen extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            surname: '',
+            email: '',
+            password: '',
+            id: ''
+        };
+    }
 
-        constructor(props) {
-            super(props);
-            this.state = {
-                surname: '',
-                name: '',
-                id: '',
-                email: '',
-            }
-        }
+    componentDidMount(){
+        axios.get('http://infoshareacademy.getsandbox.com/glodnezozole/users').then(response =>{
+            this.setState({
+                id: response.data.length
+            })
+        })
+    }
+    sendData = (e) => {
+        e.preventDefault();
+        axios.post('http://infoshareacademy.getsandbox.com/glodnezozole/users', {
+            name: this.state.name,
+            surname: this.state.surname,
+            email: this.state.email,
+            password: this.state.password,
+            id: this.state.id
+        },).then(response => console.log(response));
+        this.props.onClick();
+        alert('Konto zostało utworzone, zaloguj się.');
+    };
 
-        signInSubmit = e => {
-            e.preventdefault()
-            console.log(this.state)
-            // this.setState({
-            //     surname: event.currentTarget.surname,
-            //     name: event.currentTarget.name,
-            //     email: event.currentTarget.email,
-            // })
-        }
+    nameChanged = ({currentTarget: t}) => this.setState({name: t.value});
+    surnameChanged = ({currentTarget: t}) => this.setState({surname: t.value});
+    emailChanged = ({currentTarget: t}) => this.setState({email: t.value});
+    passwordChanged = ({currentTarget: t}) => this.setState({password: t.value});
 
 
         render(){
-
-        const { surname } = this.state.surname
-        const { name } = this.state.name
-        const { email } = this.state.email
-
         return (
             <div className="wrapper">
-                <form className="log">
-                    <div className="icon"><img src={unlocked} alt="lock"></img></div>
+                <form onSubmit={this.sendData}>
+                    <div className="icon"><img src={unlocked} alt="lock"/></div>
                     <h1>Wpisz swoje dane dostępu</h1>
-                    <input type="text" placeholder="Imię"></input>
-                    <input type="text" placeholder="Nazwisko"></input>
-                    <input type="text" placeholder="Mail"></input>
-                    <input type="password" placeholder="Hasło"></input>
-                    <input type="password" placeholder="Powtórz hasło"></input>
-                    <input type="submit" onClick={this.signInSubmit} value="Utwórz konto"></input>
+                    <input type="text" placeholder="Imię" onChange={this.nameChanged} required="required"/>
+                    <input type="text" placeholder="Nazwisko" onChange={this.surnameChanged} required="required"/>
+                    <input type="email" placeholder="Mail" onChange={this.emailChanged} required="required"/>
+                    <input type="password" placeholder="Hasło" onChange={this.passwordChanged} required="required"/>
+                    <input type="password" placeholder="Powtórz hasło" required="required"/>
+                    <input type="submit" value="Utwórz konto"/>
+
+                    <button className="switch" onClick={this.props.onClick}>Zaloguj się</button>
                 </form>
            </div>
             )}
