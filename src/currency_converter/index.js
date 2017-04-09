@@ -79,7 +79,7 @@ class Converter extends React.Component {
             : (saleRate / purchaseRate * saleAmount).toFixed(2);
 
         return (
-            <div className="container-fluid gray">
+            <div className="container-fluid gray" id="Converter">
                 <div className="col-md-1"/>
                 <div className="col-md-5">
                     <h3>Waluta, którą masz:</h3>

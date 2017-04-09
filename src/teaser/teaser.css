@@ -1,7 +1,7 @@
 /*-----------------Teaser-----------------*/
 @media screen and (max-width: 768px) {
     article.teaser {
-        padding-top: 15%;}
+        padding-top: 5%;}
 
     section.teaser {
         max-width: 100%; }
@@ -14,7 +14,7 @@
         font-size: 150%; } }
 @media screen and (min-width: 769px) {
     article.teaser {
-        padding-top: 15%;
+        padding-top: 5%;
         padding-bottom: 8% }
 
     section.teaser {

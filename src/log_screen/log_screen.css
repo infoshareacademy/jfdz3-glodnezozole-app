@@ -7,7 +7,7 @@
     position: relative;
 }
 
-.wrapper form {
+.wrapper > form {
     width: 90%;
     max-width: 380px;
     padding: 50px;
@@ -19,7 +19,7 @@
     text-align: center;
 }
 
-.wrapper form h1 {
+.wrapper > form h1 {
     text-transform: uppercase;
     font-weight: 500;
     font-size: 18px;
@@ -45,7 +45,7 @@
     transform: translate(-50%, -50%);
 }
 
-.wrapper form input {
+.wrapper > form input {
     width: 100%;
     height: 30px;
     background: rgba(255,255,255, .5);
@@ -56,7 +56,7 @@
     color: #666;
 }
 
-.wrapper form input[type=submit] {
+.wrapper > form input[type=submit] {
     height: 40px;
     background: #74bbfb;
     color: #fff;
@@ -66,10 +66,10 @@
     text-transform: uppercase;
 }
 
-.wrapper form input[type=submit]:hover {
+.wrapper > form input[type=submit]:hover {
     background: #5baffa;
 }
 
-.wrapper form input:focus {
+.wrapper > form input:focus {
     outline-color: #ccc;
 }
