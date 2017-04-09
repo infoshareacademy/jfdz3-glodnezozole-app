@@ -76,7 +76,8 @@ class App extends Component {
                 <GetExchangeRate/>
                 <Converter/>
                 <ExchangeRateHistory/>
-                <button onClick={this.setSessionStorage}>Logout</button>
+                <input className="LogOutBtn" type="button" value="Wyloguj" onClick={this.setSessionStorage}/>
+                {/*<button onClick={this.setSessionStorage}>Wyloguj</button>*/}
             </div>
         );
     }

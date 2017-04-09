@@ -140,7 +140,7 @@ setSessionStorage() {
                     <input type="button" value="Zaloguj się" onClick={this.handleLogInClick} />
                     <input type="button" value="Zaloguj się przez Facebook" onClick={this.handleClick}/>
 
-                    <button onClick={this.props.onClick}>Zarejestruj się</button>
+                    <button className="switch" onClick={this.props.onClick}>Zarejestruj się</button>
                 </form>
            </div>
             )}
