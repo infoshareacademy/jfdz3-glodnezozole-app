@@ -55,7 +55,7 @@ class GetExchangeRate extends React.Component {
             : '';
 
         return (
-			<div className="container-fluid gray" id="GetExchangeRate">
+			<div className="container-fluid gray">
 				<div className="col-md-1"/>
 				<div className="col-md-10">
 					<h3>Sprawdź kurs waluty:</h3>

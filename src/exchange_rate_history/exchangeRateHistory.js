@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios'
-import './exchangeRateHistory.css'
 var Line = require("react-chartjs").Line;
 
 
@@ -56,8 +55,15 @@ class ExchangeRateHistory extends React.Component {
     componentDidMount() {
         axios.get('http://api.nbp.pl/api/exchangerates/tables/a/?format=json')
             .then(response => {
+                let jsonData = response.data[0].rates;
+                const sortCodes = (a, b) => {
+                    return (a < b) ? -1 : (a > b) ? 1 : 0
+                };
+                jsonData.sort(function (a, b) {
+                    return sortCodes(a.code, b.code)
+                });
                 this.setState({
-                    currencies: response.data[0].rates
+                    currencies: jsonData
                 })
             })
         const currDate = new Date();
@@ -126,27 +132,48 @@ class ExchangeRateHistory extends React.Component {
     render() {
         const {currencies} = this.state;
         return (
-            <div className="currency-container" id="ExchangeRateHistory">
-                <p className="currency-value">wybierz walute</p>
-                <select className="currency-selector" value={this.state.value} onChange={this.handleChangeCurrencyCode}>
-                    {currencies ? currencies.map((event, index) =>
-                        <option
-                            value={event.code}
-                            key={index}
-                        >{event.code}
-                        </option>) : '' }
-                </select>
-                <form>
-                    <input className="currency-selector" value={this.state.startDate} type="date" onChange={this.handleChangeStartDate}/>
-                    <input className="currency-selector" value={this.state.endDate} type="date" onChange={this.handleChangeEndDate}/>
-                </form>
-                <Line data={this.state.data} options={this.state.options} width="600" height="250" redraw/>
+            <div className="container-fluid gray">
+                <div className="col-md-1"/>
+                <div className="col-md-10">
+                    <h3>Sprawdź historię kursu waluty:</h3>
+                    <form className="form-horizontal">
+                        <div className="form-group">
+                            <div className="col-md-12">
+                                <select className="styled-select"
+                                        value={this.state.value}
+                                        onChange={this.handleChangeCurrencyCode}>
+                                    {currencies ? currencies.map((event, index) =>
+                                        <option
+                                            value={event.code}
+                                            key={index}
+                                        >{event.code}
+                                        </option>) : '' }
+                                </select>
+                                <h4>Wybierz zakres dat:</h4>
+                                <div className="col-md-6">
+                                    <input className="form-control"
+                                           value={this.state.startDate}
+                                           type="date"
+                                           onChange={this.handleChangeStartDate}/>
+                                </div>
+                                <div className="col-md-6">
+                                    <input className="form-control"
+                                           value={this.state.endDate}
+                                           type="date"
+                                           onChange={this.handleChangeEndDate}/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div className="col-md-3"/>
+                    <Line data={this.state.data} options={this.state.options} width="600" height="250" redraw/>
+                </div>
             </div>
 
 
-                )
-
-              }
+        )
 
     }
-    export default ExchangeRateHistory;
+
+}
+export default ExchangeRateHistory;
