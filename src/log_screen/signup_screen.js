@@ -30,7 +30,9 @@ class SignUpScreen extends React.Component{
             email: this.state.email,
             password: this.state.password,
             id: this.state.id
-        },).then(response => console.log(response))
+        },).then(response => console.log(response));
+        this.props.onClick();
+        alert('Konto zostało utworzone, zaloguj się.');
     };
 
     nameChanged = ({currentTarget: t}) => this.setState({name: t.value});

@@ -4,7 +4,6 @@ import unlocked from '../img/unlocked.svg'
 import FacebookLogin from 'react-facebook-login';
 import axios from 'axios'
 
-const FB = window.FB
 
 class LogScreen extends React.Component {
 
@@ -17,13 +16,10 @@ class LogScreen extends React.Component {
                 password: ''
             }
         };
+        this.onChange = this.onChange.bind(this);
+        this.handleLogInClick = this.handleLogInClick.bind(this);
 
     }
-
-    responseFacebook = (response) => {
-        console.log(response);
-    };
-
 
     setSessionStorage() {
         window.sessionStorage.setItem("applicationInfoshare", "true");
