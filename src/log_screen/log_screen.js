@@ -49,7 +49,7 @@ class LogScreen extends React.Component {
             <div id="logInScreen" className="wrapper">
                 <form className="log">
                     <div className="icon"><img src={unlocked} alt="lock"/></div>
-                    <h1>Wpisz swoje dane urzytkownika</h1>
+                    <h1>Wpisz swoje dane użytkownika</h1>
                     <input type="email" placeholder="Email" name="email" onChange={this.onChange}
                            value={this.state.email}/>
                     <input type="password" placeholder="Hasło" name="password" onChange={this.onChange}
