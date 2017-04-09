@@ -83,3 +83,9 @@
 .switch:focus {
     outline-color: #ccc;
 }
+
+.my-facebook-button-class {
+    width: 100%;
+    height: 40px;
+    border: none;
+}
