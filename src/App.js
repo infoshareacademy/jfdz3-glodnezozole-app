@@ -85,6 +85,7 @@ class App extends Component {
     renderWhenImNotLoggedIn() {
         return (
             <div>
+                <NavigationBar/>
                 <Teaser/>
                 <FunctionList/>
                 <AboutUs/>
